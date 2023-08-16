@@ -5,6 +5,10 @@ import requests
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 #请求鱼池矿机数据
 @app.get("/f2pool")
 def read_root():
