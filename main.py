@@ -5,13 +5,13 @@ import requests
 
 app = FastAPI()
 
-#
-@app.get("/")
+#请求鱼池矿机数据
+@app.get("/f2pool")
 def read_root():
     url = 'https://www.f2pool.com/miners'
     data = {}
     r = requests.post(url, data=data)
-    return {"Hello": "World","Hello11": r.text}
+    return {"status": 200,"msg": r.text}
 
 
 @app.get("/items/{item_id}")
