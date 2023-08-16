@@ -21,18 +21,33 @@ def read_root():
 #请求鱼池矿机数据
 @app.get("/lbc")
 def read_root():
+
+    ##########################################登录#########################################################
     data = {
         'account': '86.15370406510',
         'password': 'a123456789'
     }
 
-    ## headers中添加上content-type这个参数，指定为json格式
     headers = {'Content-Type': 'application/json'}
 
-    ## post的时候，将data字典形式的参数用json包转换成json格式。
     res = requests.post(url='https://www.dxpool.com/api/v2/users/login', headers=headers, data=json.dumps(data))
     res_value = json.loads(res.text)
-    return {"status": 200,"msg": res.text,"token": res_value['token']}
+    token = res_value['token']
+
+    ##########################################请求lbc旷工列表#########################################################
+    data = {
+    }
+
+    headers = {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer '+token,
+    }
+
+    res = requests.post(url='https://www.dxpool.com/api/pools/lbc/accounts/6783/miners?group_id=7679&status=0&page_size=20&offset=0', headers=headers, data=data)
+
+
+    return {"status": 200,"msg": res.text,"token": headers}
 
 
 @app.get("/items/{item_id}")
