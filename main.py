@@ -30,8 +30,9 @@ def read_root():
     headers = {'Content-Type': 'application/json'}
 
     ## post的时候，将data字典形式的参数用json包转换成json格式。
-    r = requests.post(url='https://www.dxpool.com/api/v2/users/login', headers=headers, data=json.dumps(data))
-    return {"status": 200,"msg": r.text}
+    res = requests.post(url='https://www.dxpool.com/api/v2/users/login', headers=headers, data=json.dumps(data))
+    res_value = json.loads(res.text)
+    return {"status": 200,"msg": res.text,"token": res_value['token']}
 
 
 @app.get("/items/{item_id}")
