@@ -42,7 +42,7 @@ def read_root():
         headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36',
             'Content-Type': 'application/json',
-            'Cookie': '_ga_XTG5DEQWQM=deleted; _ga_3BTDE2KT80=GS1.2.1690421988.1.0.1690421988.0.0.0; _ga=GA1.2.1678147956.1686722153; _gid=GA1.2.1875331741.1692170634; userID=5771; _csrf=94dc5551DgPePAE5zPYmtHaq2UN2x5prCK9UZveob7496e29466caf452dedc0f3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%224OCQDAPjw8XshB6iNsm8PUIvYERFfWnM%22%3B%7D; _gat_UA-128180639-2=1; _ga_XTG5DEQWQM=GS1.1.1692170633.19.1.1692172003.0.0.0',
+            # 'Cookie': '_ga_XTG5DEQWQM=deleted; _ga_3BTDE2KT80=GS1.2.1690421988.1.0.1690421988.0.0.0; _ga=GA1.2.1678147956.1686722153; _gid=GA1.2.1875331741.1692170634; userID=5771; _csrf=94dc5551DgPePAE5zPYmtHaq2UN2x5prCK9UZveob7496e29466caf452dedc0f3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%224OCQDAPjw8XshB6iNsm8PUIvYERFfWnM%22%3B%7D; _gat_UA-128180639-2=1; _ga_XTG5DEQWQM=GS1.1.1692170633.19.1.1692172003.0.0.0',
             'authorization': 'Bearer ' + token,
         }
 
@@ -50,9 +50,9 @@ def read_root():
             url='https://www.dxpool.com/api/pools/lbc/accounts/6783/miners?group_id=7679&status=0&page_size=20&offset=0',
             headers=headers, data=data)
 
-        return {"status": 200, "msg": res.text, "token": headers}
+        return {"status": 200, "msg": res.text}
     except Exception as e:
-        return {"status": 200, "msg": str(e)}
+        return {"status": 201, "msg": str(e)}
 
 
 @app.get("/items/{item_id}")
