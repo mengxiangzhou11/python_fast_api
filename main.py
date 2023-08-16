@@ -19,20 +19,21 @@ def read_root():
     return {"status": 200,"msg": r.text}
 
 #请求鱼池矿机数据
-@app.get("/lbc")
-def read_root():
+@app.get("/lbc/{token}")
+def read_root(token):
 
     ##########################################登录#########################################################
-    data = {
-        'account': '86.15370406510',
-        'password': 'a123456789'
-    }
+    if token == '':
+        data = {
+            'account': '86.15370406510',
+            'password': 'a123456789'
+        }
 
-    headers = {'Content-Type': 'application/json'}
+        headers = {'Content-Type': 'application/json'}
 
-    res = requests.post(url='https://www.dxpool.com/api/v2/users/login', headers=headers, data=json.dumps(data))
-    res_value = json.loads(res.text)
-    token = res_value['token']
+        res = requests.post(url='https://www.dxpool.com/api/v2/users/login', headers=headers, data=json.dumps(data))
+        res_value = json.loads(res.text)
+        token = res_value['token']
 
     try:
         ##########################################请求lbc旷工列表#########################################################
@@ -50,7 +51,7 @@ def read_root():
             url='https://www.dxpool.com/api/pools/lbc/accounts/6783/miners?group_id=7679&status=0&page_size=20&offset=0',
             headers=headers, data=data)
 
-        return {"status": 200, "msg": res.text}
+        return {"status": 200, "msg": res.text, "token": token}
     except Exception as e:
         return {"status": 201, "msg": str(e)}
 
