@@ -46,7 +46,7 @@ def read_root():
             'authorization': 'Bearer ' + token,
         }
 
-        res = requests.post(
+        res = requests.get(
             url='https://www.dxpool.com/api/pools/lbc/accounts/6783/miners?group_id=7679&status=0&page_size=20&offset=0',
             headers=headers, data=data)
 
