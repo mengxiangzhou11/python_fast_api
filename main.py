@@ -20,7 +20,7 @@ def read_root():
 
 #请求鱼池矿机数据
 @app.get("/lbc/{token}")
-def read_root(token: Union[str, None] = None):
+def read_root(token:  None):
 
     ##########################################登录#########################################################
     if token is None:
