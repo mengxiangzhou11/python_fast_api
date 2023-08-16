@@ -1,13 +1,17 @@
 from typing import Union
 
 from fastapi import FastAPI
+import requests
 
 app = FastAPI()
 
 #
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    url = 'https://www.f2pool.com/miners'
+    data = {}
+    r = requests.post(url, data=data)
+    return {"Hello": "World","Hello11": r.text}
 
 
 @app.get("/items/{item_id}")
