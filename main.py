@@ -18,10 +18,18 @@ def read_root():
     r = requests.post(url, data=data)
     return {"status": 200,"msg": r.text}
 
-#lbc 实时价格
+#coinex 实时价格
 @app.get("/coinex/price/{item_id}")
 def read_root(item_id: str):
     url = f"https://www.coinex.com/res/vote2/project/{item_id}"
+    data = {}
+    r = requests.get(url, data=data)
+    return {"status": 200,"msg": r.text}
+
+#coinex 实时波动分析
+@app.get("/coinex/volatility/{item_id}")
+def read_root(item_id: str):
+    url = f"https://www.coinex.com/res/quotes/asset/volatility/{item_id}"
     data = {}
     r = requests.get(url, data=data)
     return {"status": 200,"msg": r.text}
