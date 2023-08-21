@@ -19,9 +19,9 @@ def read_root():
     return {"status": 200,"msg": r.text}
 
 #lbc 实时价格
-@app.get("/lbc/price")
-def read_root():
-    url = 'https://www.coinex.com/res/vote2/project/LBC'
+@app.get("/coinex/price/{item_id}")
+def read_root(item_id: str):
+    url = f"https://www.coinex.com/res/vote2/project/{item_id}"
     data = {}
     r = requests.get(url, data=data)
     return {"status": 200,"msg": r.text}
