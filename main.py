@@ -18,6 +18,15 @@ def read_root():
     r = requests.post(url, data=data)
     return {"status": 200,"msg": r.text}
 
+#lbc 实时价格
+@app.get("/lbc/price")
+def read_root():
+    url = 'https://www.coinex.com/res/vote2/project/LBC'
+    data = {}
+    r = requests.post(url, data=data)
+    return {"status": 200,"msg": r.text}
+
+
 #请求鱼池矿机数据
 @app.get("/lbc/{token}")
 def read_root(token:  None):
