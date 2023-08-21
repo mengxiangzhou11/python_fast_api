@@ -23,7 +23,7 @@ def read_root():
 def read_root():
     url = 'https://www.coinex.com/res/vote2/project/LBC'
     data = {}
-    r = requests.post(url, data=data)
+    r = requests.get(url, data=data)
     return {"status": 200,"msg": r.text}
 
 
