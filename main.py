@@ -34,6 +34,15 @@ def read_root(item_id: str):
     r = requests.get(url, data=data)
     return {"status": 200,"msg": r.text}
 
+#okx 实时价格
+@app.get("/okx/price/{item_id}")
+def read_root(item_id: str):
+    url = f"https://www.okx.com/priapi/v5/rubik/public/one-ticker?ccy={item_id}&t=1693450272414"
+    data = {}
+    r = requests.get(url, data=data)
+    return {"status": 200,"msg": r.text}
+
+
 
 #请求鱼池矿机数据
 @app.get("/lbc/{token}")
