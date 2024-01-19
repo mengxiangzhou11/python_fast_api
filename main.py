@@ -26,6 +26,14 @@ def read_root(item_id: str):
     r = requests.get(url, data=data)
     return {"status": 200,"msg": r.text}
 
+#coinex 实时价格
+@app.get("/xt/price/{item_id}")
+def read_root(item_id: str):
+    url = f"https://www.xt.com/sapi/v4/market/public/ticker/24h?symbol={item_id}"
+    data = {}
+    r = requests.get(url, data=data)
+    return {"status": 200,"msg": r.text}
+
 #coinex 实时波动分析
 @app.get("/coinex/volatility/{item_id}")
 def read_root(item_id: str):
